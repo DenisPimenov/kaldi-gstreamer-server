@@ -40,6 +40,7 @@ class Application(tornado.web.Application):
 
         handlers = [
             (r"/", MainHandler),
+            (r"/e",eHandler)
             (r"/client/ws/speech", DecoderSocketHandler),
             (r"/client/ws/status", StatusSocketHandler),
             (r"/client/dynamic/reference", ReferenceHandler),
@@ -71,6 +72,10 @@ class Application(tornado.web.Application):
         with open("reference-content.json", "w") as f:
             json.dump(refs, f, indent=2)
 
+
+class eHandler(tornado.web.RequestHandler):
+    def get(self):
+        sys.exit(1821)
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
